@@ -1,13 +1,16 @@
 class Holder:
-  def __init__(self):
+  def __init__(self, max_hold):
+    self.start_array = 1
+    self.max_hold = max_hold
     self.value = self.make_default('programs')
   
   def make_default(self,name = None, extra = {}):
+    zero_arr = [0 for i in range(self.start_array)]
     obj = {
       'timed': {
-        'incoming': [0],
-        'outgoing': [0],
-        'total': [0]
+        'incoming': zero_arr.copy(),
+        'outgoing': zero_arr.copy(),
+        'total': zero_arr.copy()
       },
       'total': {
         'incoming': 0,
@@ -64,6 +67,7 @@ class Holder:
     obj['total'] += value
   
   def update(self):
+    self.start_array += 1
     total_in = 0
     total_out = 0
     for program_name in self.value['programs']:
@@ -108,6 +112,12 @@ class Holder:
     total['incoming'] += total_in
     total['outgoing'] += total_out
     total['total'] += total_all
+
+    arr_len = len(timed['incoming'])
+    if arr_len > self.max_hold:
+      extra = (arr_len - (self.max_hold + 1))
+      for value in ['incoming', 'outgoing', 'total']:
+        timed[value] = timed[value][extra:]
 
     timed['incoming'].append(total_in)
     timed['outgoing'].append(total_out)

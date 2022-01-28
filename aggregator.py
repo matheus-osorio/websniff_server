@@ -2,10 +2,12 @@ from sniff import Sniff
 from utils import get_entries
 from holder import Holder
 from threading import Thread, Timer
+from configurator import Configurator
 class Aggregator:
   def __init__(self):
+    self.config = Configurator()
     self.sniffer = Sniff(self.add_value)
-    self.holder = Holder()
+    self.holder = Holder(max_hold = self.config.max_hold)
 
   def add_value(self, pct):
     program, connection, protocol, incoming, outgoing = get_entries(pct,[
@@ -30,7 +32,7 @@ class Aggregator:
     
   def update_holder(self):
     self.holder.update()
-    Timer(1.0,self.update_holder).start()
+    Timer(self.config.update_schedule,self.update_holder).start()
   
   def get(self):
     return self.holder.value
