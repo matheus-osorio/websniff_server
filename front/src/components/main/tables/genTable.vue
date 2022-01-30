@@ -1,5 +1,6 @@
 <template>
-  <table class="table scroller">
+  <div class="scroller">
+  <table class="table">
     <thead>
       <th scope="col">Programa</th>
       <th scope="col">Conexões</th>
@@ -27,6 +28,7 @@
     </tr>
     </tbody>
   </table>
+  </div>
 </template>
 
 <script>
@@ -50,7 +52,6 @@ export default {
           outgoing: sizeData(outgoing)
         }
       }
-      console.log(data)
       return data
     }
   }
