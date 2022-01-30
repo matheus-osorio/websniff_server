@@ -21,6 +21,8 @@ export default {
 #gen-bullet-area{
   display: grid;
   grid-template-rows: 1fr 1fr;
+  row-gap: 10px;
+  column-gap: 10px;
   grid-template-columns: 1fr 1fr;
 }
 </style>

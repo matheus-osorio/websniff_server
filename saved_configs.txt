@@ -1,5 +1,5 @@
 {
   "update_schedule": 1.0,
-  "max_hold": 600,
+  "max_hold": 60,
   "teste": 2
 }

@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <div class='scroller'><table class="table">
     <thead>
       <th>Programa</th>
       <th>Conexões</th>
@@ -7,32 +7,61 @@
       <th>Download</th>
       <th>Upload</th>
     </thead>
-    <tr v-for="program in Object.keys(data)" :key="program.id">
-      <td>
+    <tbody>
+    <tr v-for="program in Object.keys(parsedData)" :key="program.id">
+      <th>
         {{program}}
+      </th>
+      <td>
+        {{parsedData[program].connections}}
       </td>
       <td>
-        {{data[program].connections}}
+        {{parsedData[program].total}}
       </td>
       <td>
-        {{data[program].total}}
+        {{parsedData[program].incoming}}
       </td>
       <td>
-        {{data[program].incoming}}
-      </td>
-      <td>
-        {{data[program].outgoing}}
+        {{parsedData[program].outgoing}}
       </td>
     </tr>
-  </table>
+    </tbody>
+  </table></div>
 </template>
 
 <script>
+import {sizeData} from '@/utils'
+
 export default {
-  props: ['data']
+  props: ['data'],
+  computed: {
+    parsedData() {
+      const data = {}
+      for(let program in this.data) {
+        const {
+          connections,
+          total,
+          incoming,
+          outgoing
+        } = this.data[program]
+        data[program] = {
+          connections,
+          total: sizeData(total),
+          incoming: sizeData(incoming),
+          outgoing: sizeData(outgoing)
+        }
+      }
+      return data
+    }
+  }
 }
 </script>
 
 <style>
+
+.scroller {
+  overflow: auto;
+  height: 100%;
+}
 
 </style>

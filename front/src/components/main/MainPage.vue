@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import {sizeData} from '@/utils'
 import genGraph from './graphs/generalGraph.vue'
 import dirGraph from './graphs/directionalGraph.vue'
 import genTable from './tables/genTable.vue'
@@ -53,9 +54,8 @@ export default {
         this.table = obj.table
         const bulletTitle = ['total', 'incoming', 'outgoing', 'timed']
         bulletTitle.forEach((entry) => {
-          this.bullet[entry].content = obj.bullet[entry]
+          this.bullet[entry].content = sizeData(obj.bullet[entry])
         })
-        this.bullet.total.content = obj.bullet.total
 
       })
     }, 1000)
@@ -66,10 +66,12 @@ export default {
 
 <style>
 #mainPage {
-  height: 100vh;
+  height: 100%;
   z-index: 1;
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 50vw 50vw;
+  row-gap: 30px;
+  column-gap: 30px;
 }
 </style>

@@ -18,6 +18,12 @@ computed: {
             return {}
         }
         return {
+            axisPointer: {
+                animation: false
+            },
+            tooltip: {
+                trigger: 'axis',
+            },
             xAxis: {
                 data: this.rawData.total.map((v, index) => index + 1)
             },
@@ -26,14 +32,19 @@ computed: {
             },
             series: [
                 {
+                    name: 'download',
                     type: 'line',
                     data: this.rawData.incoming
                 },
                  {
+                    name: 'upload',
                     type: 'line',
                     data: this.rawData.outgoing
                 },
-            ]
+            ],
+            legend: {
+                data: ['download', 'upload']
+            }
         }
     }
 },
@@ -50,16 +61,3 @@ components: {
 }
 
 </style>
-
-xAxis: {
-        data: 
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [
-        {
-            type: 'bar',
-            data: [63, 75, 24, 92]
-        }
-        ]

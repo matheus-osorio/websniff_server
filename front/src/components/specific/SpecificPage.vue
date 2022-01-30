@@ -12,6 +12,7 @@ import genGraph from './graphs/generalGraph.vue'
 import dirGraph from './graphs/directionalGraph.vue'
 import genTable from './tables/genTable.vue'
 import bulletArea from '../bulletArea.vue'
+import {sizeData} from '@/utils'
 export default {
   components: {
     genGraph,
@@ -56,9 +57,8 @@ export default {
         this.table = obj.table
         const bulletTitle = ['total', 'incoming', 'outgoing', 'timed']
         bulletTitle.forEach((entry) => {
-          this.bullet[entry].content = obj.bullet[entry]
+          this.bullet[entry].content = sizeData(obj.bullet[entry])
         })
-        this.bullet.total.content = obj.bullet.total
 
       })
     }, 1000)
