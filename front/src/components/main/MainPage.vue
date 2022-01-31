@@ -45,7 +45,11 @@ export default {
     }
   },
   mounted(){
-    setInterval(() => {
+    const mainInterval = setInterval(() => {
+      if(this.$route.name !== 'geral') {
+        clearInterval(mainInterval)
+        return
+      }
       fetch('http://localhost:5000/general')
       .then(res => res.json())
       .then((obj) => {

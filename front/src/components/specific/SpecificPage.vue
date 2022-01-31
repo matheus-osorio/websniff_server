@@ -45,7 +45,11 @@ export default {
     }
   },
   mounted(){
-    setInterval(() => {
+    let specificInterval = setInterval(() => {
+      if(this.$route.name !== 'especifico') {
+        clearInterval(specificInterval)
+        return
+      }
       fetch('http://localhost:5000/specific', {headers: {
         program: this.$route.params.program
       }

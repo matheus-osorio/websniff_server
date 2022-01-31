@@ -2,7 +2,6 @@
   <div class='scroller'><table class="table">
     <thead>
       <th>Programa</th>
-      <th>Conexões</th>
       <th>Total</th>
       <th>Download</th>
       <th>Upload</th>
@@ -12,9 +11,6 @@
       <th>
         {{program}}
       </th>
-      <td>
-        {{parsedData[program].connections}}
-      </td>
       <td>
         {{parsedData[program].total}}
       </td>

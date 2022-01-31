@@ -34,13 +34,15 @@ class Aggregator:
     self.holder.update()
     Timer(self.config.update_schedule,self.update_holder).start()
   
+  def update_configs(self, config, value):
+    obj = {}
+    obj[config] = value
+    self.config.save(obj)
+    self.remake_configs()
+  
+  def remake_configs(self):
+    self.holder.max_hold = self.config.max_hold
+
   def get(self):
     return self.holder.value
     
-
-
-aggr = Aggregator()
-aggr.start()
-
-
-  

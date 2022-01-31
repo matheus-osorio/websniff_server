@@ -1,3 +1,4 @@
+
 class Holder:
   def __init__(self, max_hold):
     self.start_array = 1
@@ -114,8 +115,8 @@ class Holder:
     total['total'] += total_all
 
     arr_len = len(timed['incoming'])
-    if arr_len > self.max_hold:
-      extra = (arr_len - (self.max_hold + 1))
+    if arr_len >= self.max_hold:
+      extra = (arr_len - (self.max_hold - 1))
       for value in ['incoming', 'outgoing', 'total']:
         timed[value] = timed[value][extra:]
 

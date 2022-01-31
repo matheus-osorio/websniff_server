@@ -3,19 +3,19 @@
     <img src="logo.png" alt="" class="logo-icon">
     <ul class="nav nav-pills flex-column mb-auto padded-list">
       <li class="nav-item">
-        <a href="#" class="nav-link link-dark" aria-current="page" :class="{'active': active == 1}" @click="active = 1">
+        <a href="#" class="nav-link link-dark" @click="changePage('')" aria-current="page" :class="{'active': this.$route.name === 'geral'}">
           <i class="fas fa-home"></i>
           Gráficos Gerais
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark" :class="{'active': active == 2}" @click="active = 2">
+        <a href="#" class="nav-link link-dark" :class="{'active': this.$route.name === 'especifico'}" @click="active = 2">
           <i class="fas fa-search"></i>
           Gráficos Específicos
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark" :class="{'active': active == 3}" @click="active = 3">
+        <a href="#" class="nav-link link-dark" :class="{'active': this.$route.name === 'configuracao'}"  @click="changePage('configuration')">
           <i class="fas fa-cog"></i>
           Configurações
         </a>
@@ -27,6 +27,11 @@
 <script>
 export default {
   props: ['show'],
+  methods: {
+    changePage(page) {
+      this.$router.push(`/${page}`)
+    }
+  },
   data() {
     return {
       active: 1,

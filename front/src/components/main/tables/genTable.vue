@@ -11,7 +11,7 @@
     <tbody>
     <tr v-for="program in Object.keys(parsedData)" :key="program.id">
       <th>
-        {{program}}
+      <a class="pointer-click" @click="goToSpecific(program)">{{program}}</a>
       </th>
       <td>
         {{parsedData[program].connections}}
@@ -35,6 +35,11 @@
 import {sizeData} from '@/utils'
 export default {
   props: ['data'],
+  methods:{
+    goToSpecific(program){
+      this.$router.push(`/${program}`)
+    }
+  },
   computed: {
     parsedData() {
       const data = {}
@@ -64,4 +69,7 @@ export default {
   overflow: auto;
 }
 
+.pointer-click{
+  cursor: pointer;
+}
 </style>

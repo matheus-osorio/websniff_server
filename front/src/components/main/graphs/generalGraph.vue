@@ -1,6 +1,6 @@
 <template>
   <div id="genGraph">
-    <e-chart :option="graph"></e-chart>
+    <e-chart :option="graph" autoresize></e-chart>
   </div>
 </template>
 

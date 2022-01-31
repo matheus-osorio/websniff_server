@@ -1,6 +1,6 @@
 <template>
   <div id="genGraph">
-    <e-chart :option="graph"></e-chart>
+    <e-chart :option="graph" autoresize></e-chart>
   </div>
 </template>
 
@@ -24,13 +24,22 @@ computed: {
             len = prog.length
             let obj = {
                 type: 'line',
-                data: prog
+                data: prog,
+                name,
             }
             series.push(obj)
         }
 
-        console.log(series)
         return {
+            axisPointer: {
+                animation: false
+            },
+            tooltip: {
+                trigger: 'axis',
+            },
+            legend:{
+                data: ['total']
+            },
             xAxis: {
                 data: Array.from({length: len}, (x,i) => i+1)
             },
