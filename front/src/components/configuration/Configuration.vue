@@ -1,7 +1,7 @@
 <template>
   <div id="config-page" v-if="loaded">
     <form>
-      <div class="mb-3">
+      <div class="mb-3" v-if="false">
         <label for="urlInput" class="form-label">Url da busca</label>
         <input type="text" class="form-control" id="urlInput"  @change="updateConfigs('url','str')" v-model="url">
         <div id="textHelp" class="form-text">Local onde o programa irá buscar informações</div>

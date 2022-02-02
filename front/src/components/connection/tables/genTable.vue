@@ -2,8 +2,7 @@
   <div class="scroller">
   <table class="table">
     <thead>
-      <th scope="col">Programa</th>
-      <th scope="col">Conexões</th>
+      <th scope="col">Protocolo</th>
       <th scope="col">Total</th>
       <th scope="col">Download</th>
       <th scope="col">Upload</th>
@@ -11,11 +10,9 @@
     <tbody>
     <tr v-for="program in Object.keys(parsedData)" :key="program.id">
       <th>
-      <a class="pointer-click" @click="goToSpecific(program)">{{program}}</a>
+      {{program}}
       </th>
-      <td>
-        {{parsedData[program].connections}}
-      </td>
+
       <td>
         {{parsedData[program].total}}
       </td>

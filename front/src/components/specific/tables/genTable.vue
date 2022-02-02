@@ -1,7 +1,7 @@
 <template>
   <div class='scroller'><table class="table">
     <thead>
-      <th>Programa</th>
+      <th>Conexão</th>
       <th>Total</th>
       <th>Download</th>
       <th>Upload</th>

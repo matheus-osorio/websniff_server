@@ -9,9 +9,15 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark" :class="{'active': this.$route.name === 'especifico'}" @click="active = 2">
+        <a href="#" class="nav-link link-dark" :class="{'active': this.$route.name === 'especifico'}">
           <i class="fas fa-search"></i>
-          Gráficos Específicos
+          Gráficos do Programa
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark" :class="{'active': this.$route.name === 'conexao'}">
+          <i class="fas fa-search-plus"></i>
+          Gráficos da Conexão
         </a>
       </li>
       <li>
