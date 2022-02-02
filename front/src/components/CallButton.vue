@@ -12,7 +12,6 @@ export default {
   components: {
   },
   mounted() {
-    document.querySelector('.callButton').on
   }
 }
 </script>
@@ -22,7 +21,7 @@ export default {
   position: absolute;
   z-index: 100;
   width: 5%;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 15px;
+  margin-left: 15px;
 }
 </style>

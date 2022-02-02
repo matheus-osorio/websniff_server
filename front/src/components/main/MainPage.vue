@@ -70,12 +70,14 @@ export default {
 
 <style>
 #mainPage {
-  height: 100%;
-  z-index: 1;
+  height: 100vh;
+  width: 100vw;
   display: grid;
+  background-color: #f5f5f5;
   grid-template-rows: 1fr 1fr;
-  grid-template-columns: 50vw 50vw;
+  grid-template-columns: 1fr 1fr;
   row-gap: 30px;
   column-gap: 30px;
+  padding: 2%;
 }
 </style>

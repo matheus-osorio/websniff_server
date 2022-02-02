@@ -1,5 +1,5 @@
 <template>
-  <div id="specificPage">
+  <div id="mainPage">
     <genGraph :rawData="total"/>
     <dirGraph :rawData="directional"/>
     <genTable :data="table" />
@@ -8,11 +8,11 @@
 </template>
 
 <script>
+import {sizeData} from '@/utils'
 import genGraph from './graphs/generalGraph.vue'
 import dirGraph from './graphs/directionalGraph.vue'
 import genTable from './tables/genTable.vue'
 import bulletArea from '../bulletArea.vue'
-import {sizeData} from '@/utils'
 export default {
   components: {
     genGraph,
@@ -45,17 +45,24 @@ export default {
     }
   },
   mounted(){
-    let specificInterval = setInterval(() => {
-      if(this.$route.name !== 'especifico') {
-        clearInterval(specificInterval)
+    const connection = setInterval(() => {
+      if(this.$route.name !== 'conexao') {
+        clearInterval(connection)
         return
       }
-      fetch('http://localhost:5000/specific', {headers: {
-        program: this.$route.params.program
-      }
+      console.log({
+        program: this.$route.params.program,
+        connection: this.$route.params.connection,
+      })
+      fetch('http://localhost:5000/connection', {
+        headers: {
+          program: this.$route.params.program,
+          conn: this.$route.params.connection,
+        }
       })
       .then(res => res.json())
       .then((obj) => {
+        console.log(obj)
         this.directional = obj.directional
         this.total = obj.total
         this.table = obj.table
@@ -72,7 +79,7 @@ export default {
 </script>
 
 <style>
-#specificPage {
+#mainPage {
   height: 100vh;
   width: 100vw;
   display: grid;

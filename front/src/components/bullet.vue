@@ -16,9 +16,10 @@ export default {
 .bullet-border {
   padding: 20px;
   border-style: solid;
-  border-color: lightgrey;
-  border-width: 1px;
-  border-radius: 5px;
+  border: solid;
+  border-color: white;
+  background: #fff!important;
+  box-shadow: 0 0 5px 0 #9f9f9f;
 }
 
 .text-center {

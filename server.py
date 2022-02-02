@@ -10,10 +10,6 @@ aggr.start()
 app = Flask(__name__)
 CORS(app)
 
-def ipLongToString(value):
-  return socket.inet_ntoa(struct.pack('!L', value))
-
-
 @app.route('/general')
 def general():
   obj = aggr.get()
@@ -54,17 +50,51 @@ def specific():
     'total': program['total']['total'],
     'incoming': program['total']['incoming'],
     'outgoing': program['total']['outgoing'],
-    'timed': program['timed']['total'][-1]
+    'timed': program['timed']['total'][-1],
+    
   }
 
   for connection in program['connections']:
     current = program['connections'][connection]
-    response['table'][ipLongToString(connection)] = {
+    response['table'][connection] = {
       'total': current['total']['total'],
       'incoming': current['total']['incoming'],
       'outgoing': current['total']['outgoing']
     }
   return json.dumps(response)
+
+@app.route('/connection')
+def connection():
+  program_name = request.headers['program']
+  connection_name = request.headers['conn']
+  response = {}
+  obj = aggr.get()
+  connection = obj['programs'][program_name]['connections'][connection_name]
+
+  response['directional'] = connection['timed']
+  response['total'] = {
+    'total': connection['timed']['total'],
+    'TCP': connection['protocols']['TCP']['timed']['total'],
+    'UDP': connection['protocols']['UDP']['timed']['total']
+  }
+  response['table'] = {}
+  response['bullet'] = {
+    'total': connection['total']['total'],
+    'incoming': connection['total']['incoming'],
+    'outgoing': connection['total']['outgoing'],
+    'timed': connection['timed']['total'][-1],
+  }
+
+  for protocol in connection['protocols']:
+    current = connection['protocols'][protocol]
+    response['table'][protocol] = {
+      'total': current['total']['total'],
+      'incoming': current['total']['incoming'],
+      'outgoing': current['total']['outgoing']
+    }
+  return json.dumps(response)
+
+
 
 
 @app.route('/get_config')

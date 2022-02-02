@@ -7,18 +7,18 @@
       <th>Upload</th>
     </thead>
     <tbody>
-    <tr v-for="program in Object.keys(parsedData)" :key="program.id">
+    <tr v-for="connection in Object.keys(parsedData)" :key="connection.id">
       <th>
-        {{program}}
+        <a class="pointer-click" @click="goToConnection(connection)">{{connection}}</a>
       </th>
       <td>
-        {{parsedData[program].total}}
+        {{parsedData[connection].total}}
       </td>
       <td>
-        {{parsedData[program].incoming}}
+        {{parsedData[connection].incoming}}
       </td>
       <td>
-        {{parsedData[program].outgoing}}
+        {{parsedData[connection].outgoing}}
       </td>
     </tr>
     </tbody>
@@ -30,6 +30,11 @@ import {sizeData} from '@/utils'
 
 export default {
   props: ['data'],
+  methods:{
+    goToConnection(connection){
+      this.$router.push(`/${this.$route.params.program}/${connection}`)
+    }
+  },
   computed: {
     parsedData() {
       const data = {}

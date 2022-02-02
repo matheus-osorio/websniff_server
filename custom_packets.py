@@ -119,7 +119,7 @@ class CustomPacket:
     def output_format(self) -> dict:
         """ This method provide the information that is going to be consumed by the interface. """
         packet = {
-            'Ip' : self.ip2long(self.get_external_ip()),
+            'Ip'         : self.get_external_ip(),
             't_protocol' : self._trans_protocol,
             'a_protocol' : self._app_protocol,
             'proc_name'  : self._process._name,

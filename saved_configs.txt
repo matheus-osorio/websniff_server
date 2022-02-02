@@ -1,5 +1,5 @@
 {
   "update_schedule": 1.0,
-  "max_hold": 60,
-  "url": "/teste23"
+  "max_hold": 700,
+  "url": "/teste"
 }

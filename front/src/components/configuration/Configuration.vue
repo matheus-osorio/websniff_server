@@ -14,7 +14,6 @@
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Salvar Histórico</label>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
 </form>
   </div>
 </template>
@@ -51,5 +50,12 @@ export default {
 </script>
 
 <style>
+
+#config-page{
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  padding: 10%;
+}
 
 </style>
