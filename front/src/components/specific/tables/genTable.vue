@@ -2,6 +2,7 @@
   <div class='scroller'><table class="table">
     <thead>
       <th>Conexão</th>
+      <th>Protocolo</th>
       <th>Total</th>
       <th>Download</th>
       <th>Upload</th>
@@ -11,6 +12,9 @@
       <th>
         <a class="pointer-click" @click="goToConnection(connection)">{{connection}}</a>
       </th>
+      <td>
+      {{parsedData[connection].protocol}}
+      </td>
       <td>
         {{parsedData[connection].total}}
       </td>
@@ -42,11 +46,13 @@ export default {
         const {
           connections,
           total,
+          protocol,
           incoming,
           outgoing
         } = this.data[program]
         data[program] = {
           connections,
+          protocol,
           total: sizeData(total),
           incoming: sizeData(incoming),
           outgoing: sizeData(outgoing)

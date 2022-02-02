@@ -58,6 +58,7 @@ def specific():
     current = program['connections'][connection]
     response['table'][connection] = {
       'total': current['total']['total'],
+      'protocol': list(current['protocols'].keys())[0],
       'incoming': current['total']['incoming'],
       'outgoing': current['total']['outgoing']
     }

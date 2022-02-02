@@ -35,14 +35,7 @@ class Holder:
       value[connection] = self.make_default('protocols')
     value = value[connection]['protocols']
     if protocol not in value:
-      value['TCP'] = self.make_default(None, {
-        'counting': {
-          'incoming': 0,
-          'outgoing': 0,
-          'total': 0
-        }
-      })
-      value['UDP'] = self.make_default(None, {
+      value[protocol] = self.make_default(None, {
         'counting': {
           'incoming': 0,
           'outgoing': 0,
